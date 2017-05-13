@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 
 import './PastryList.css'
 
+import SubmitButton from "./SubmitButtton";
+
 function formatPrice(priceInCents) {
 	return `$${(priceInCents / 100).toFixed(2)}`
 }
@@ -33,10 +35,11 @@ class BasketList extends React.Component {
 									<td>{formatPrice(pastry.totalPrice)}</td>
 									<td>{pastry.quantity}</td>
 									<td>
-										<form method='POST' action='/basket' className='add-to-order' onSubmit={this.props.removeFromOrder}>
-											<input type='hidden' value={pastry.name} ref={(input) => { this.pastryName = input }} />
-											<button type='submit'>Remove</button>
-										</form>
+										<SubmitButton value={pastry.name}
+										              action="/basket"
+										              method={this.props.removeFromOrder}
+										              text="Remove"
+										/>
 									</td>
 								</tr>
 							)
@@ -49,10 +52,16 @@ class BasketList extends React.Component {
 						</tr>
 						</tfoot>
 					</table>
-					<form method='POST' action='/basket' className='add-to-order' onSubmit={this.props.clearOrder}>
-						<input type='hidden' value='clear'/>
-						<button type='submit'>Clear Order</button>
-					</form>
+					<SubmitButton value="clear"
+						          action="/basket"
+					              method={this.props.clearOrder}
+					              text="Clear Order"
+					/>
+					<SubmitButton value="checkout"
+					              action="/"
+					              method={this.props.clearOrder}
+					              text="Checkout"
+					/>
 				</div>
 			)
 		} else {
