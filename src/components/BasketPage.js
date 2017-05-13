@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 import './PastryList.css'
+import './bootstrap/dist/css/bootstrap.css'
 
 import SubmitButton from "./SubmitButtton";
 
@@ -17,7 +18,7 @@ class BasketList extends React.Component {
 		if (Object.keys(basket.items).length > 0) {
 			return (
 				<div>
-					<table>
+					<table className="table">
 						<thead>
 						<tr>
 							<th>Pastry Name</th>
