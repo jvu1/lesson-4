@@ -15,12 +15,6 @@ import PastryPage from './components/PastryPage'
 import OrderPage from './components/BasketPage'
 import NotFound from './components/NotFound'
 
-// function getTotalPrice (pastries, totalPrice = 0) {
-// 	return pastries.reduce((acc, p) => {
-// 		return acc + p.price
-// 	}, totalPrice)
-// }
-
 class Root extends React.Component {
 	constructor() {
 		super()
