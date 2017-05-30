@@ -31,6 +31,14 @@ class Root extends React.Component {
 		this.clearOrder = this.clearOrder.bind(this)
 	}
 
+	calculateTotalPrice(basket) {
+		return Object.keys(basket)
+			.map(item => basket[item].totalPrice)
+			.reduce((acc, price) => {
+				return acc + price
+			}, 0)
+	}
+
 	addToOrder(e) {
 		e.preventDefault()
 
@@ -49,11 +57,7 @@ class Root extends React.Component {
 			basket.items[pastry.name] = Object.assign({}, pastry, {quantity: 1}, {totalPrice: pastry.price})
 		}
 
-		basket.totalPrice = Object.keys(basket.items)
-			.map(item => basket.items[item].totalPrice)
-			.reduce((acc, price) => {
-				return acc + price
-			}, 0)
+		basket.totalPrice = this.calculateTotalPrice(basket.items)
 
 		this.setState({basket})
 	}
@@ -71,6 +75,8 @@ class Root extends React.Component {
 		if (basket.items[value].quantity === 0) {
 			delete basket.items[value]
 		}
+
+		basket.totalPrice = this.calculateTotalPrice(basket.items)
 
 		this.setState({basket})
 	}
